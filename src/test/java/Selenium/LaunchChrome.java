@@ -9,7 +9,8 @@ public class LaunchChrome {
         System.setProperty("webdriver.chrome.driver","C:\\ChromeDriverSelenium\\chromedriver-win64\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         WebDriver driver1 = new ChromeDriver();
-        driver.get("https://www.amazon.in/");
+        driver1.get("https://www.google.com/");
+        driver.get("https://www.amazon.com/");
         driver.close();
     }
 }
