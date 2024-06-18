@@ -25,12 +25,12 @@ public class LaunchChrome {
 
         */
 
+        
         // for other page
         driver.get("https://parabank.parasoft.com/parabank/index.htm");
         driver.findElement(By.name("username")).sendKeys("john");
         driver.findElement(By.name("password")).sendKeys("demo");
         driver.findElement(By.cssSelector(".button:nth-child(1)")).click();
         driver.findElement(By.linkText("Log Out")).click();
-
     }
 }
