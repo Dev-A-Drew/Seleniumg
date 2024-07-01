@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.nio.channels.Selector;
+
 import java.time.Duration;
 
 public class Dropdwn {
@@ -19,15 +19,15 @@ public class Dropdwn {
 
         //opening the web page
         driver.get("https://www.boa.bo/BoAWebsite");
+
         //Maximize the winddow
         //driver.manage().window().maximize();
-        //Instanciate an object from WebDriverWait to wait the page load
-        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(10));
+
+        //Instantiating an object from WebDriverWait to wait the page load
+        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(5));
         //Use the wait object in the element object to click in the dropdown
         WebElement elementoD = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@id='select_desde']")));
 
-        //WebElement elementoD = driver.findElement(By.xpath("//select[@id='select_desde']"));
-        //WebElement elementoD = driver.findElement(By.cssSelector("#select_desde"));
 
         //Define a selector object
         Select selectorD = new Select(elementoD);
@@ -39,7 +39,7 @@ public class Dropdwn {
         selectorD.selectByIndex(13);
         Thread.sleep(1000);
 
-                                //--------- WE GO TO THE DESTINY AUTOMATION ----------
+                                //--------- WE GO TO THE DESTINY SELECTION ----------
 
         WebElement elementoT = wait.until(ExpectedConditions.elementToBeClickable(By.id("select_hasta")));
         Select selectorT = new Select(elementoT);
@@ -50,7 +50,27 @@ public class Dropdwn {
         selectorT.selectByVisibleText("TARIJA");
         Thread.sleep(1000);
 
+
+                                //---------INTERACTING WITH THE CHECK BOXES ---------//
+        //Alternative with Xpath to find the radio button
+        //WebElement radio1 = driver.findElement(By.xpath("//div[@id='rbtn_ida']/div"));
+
+        //Define a new object for radio button pointing the selector
+        WebElement radio1 = driver.findElement(By.id("rbtn_ida"));
+        //The code will make click
+        radio1.click();
+        //Implement a system message of the executed action
+        System.out.println("Se ha seleccionado SOLO IDA correectamente");
+        //A wait of 2 seconds before click back the default radio button selected (Ida y vuelta)
+        Thread.sleep(2000);
+        //Pointing back to the respective selector in the page
+        radio1 = driver.findElement(By.id("rbtn_ida_vuelta"));
+        //Click in the radio button
+        radio1.click();
+        //Message of the executed action
+        System.out.println("Se ha vuelto a seleccionar IDA Y VUELTA correctamente");
+
         //close window
-        driver.close();
+        //driver.close();
     }
 }
