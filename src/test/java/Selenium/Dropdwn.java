@@ -111,6 +111,27 @@ public class Dropdwn {
         }
         
 
+        WebElement person1=wait.until(ExpectedConditions.elementToBeClickable(By.id("select_nro_adultos")));
+        Select number1= new Select(person1);
+        number1.selectByValue("2");
+        person1.click();
+
+
+        WebElement person2=wait.until(ExpectedConditions.elementToBeClickable(By.id("select_nro_ninhos")));
+        Select number2= new Select(person2);
+        number2.selectByValue("2");
+        person2.click();
+
+
+        WebElement person3=wait.until(ExpectedConditions.elementToBeClickable(By.id("select_nro_bebes")));
+        Select number3= new Select(person3);
+        number3.selectByValue("1");
+        person3.click();
+
+        WebElement searchBtn = wait.until(ExpectedConditions.elementToBeClickable(By.id("btn_buscar_vuelos")));
+        searchBtn.click();
+
+
         //close window
         //driver.close();
     }
