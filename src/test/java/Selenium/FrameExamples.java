@@ -13,7 +13,7 @@ public class FrameExamples {
         WebDriver driver = new ChromeDriver();
 
         driver.get("https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_confirm");
-        // Maximizing the windo
+        // Maximizing the window
         driver.manage().window().maximize();
         //defining an element to handle and target the frame
 

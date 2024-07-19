@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 
-public class ImplicitWait {
+public class ImplicitWaitExample {
 
     static WebDriver driver = new ChromeDriver();
     static WebElement element;

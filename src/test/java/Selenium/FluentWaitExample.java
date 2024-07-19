@@ -25,7 +25,7 @@ public class FluentWaitExample {
 
                                                 /* ----- EXPLICIT WAIT ------*/
         /* In FluentWait the command checks after time intervals if the web element is available or not*/
-        
+
 
         /* Here we define first the "Wait" interface and it's methods are implemented by the "fluent" class
            a time out of duration fo the "interval's life"
