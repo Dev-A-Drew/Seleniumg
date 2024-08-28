@@ -5,9 +5,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.awt.*;
 import java.time.Duration;
 
@@ -27,7 +24,6 @@ public class MouseActionsExample {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         Actions action1 = new Actions(driver);
-        Robot daviD = new Robot();
         action1.moveToElement(driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div[1]/nav/a[1]"))).build().perform();
         action1.moveToElement(driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div[1]/nav/a[2]"))).build().perform();
         action1.moveToElement(driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div[1]/nav/a[3]"))).build().perform();
