@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ExplicitWait {
+public class ExplicitWaitExample {
     static WebDriver driver = new ChromeDriver();
     static WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(6));
     static WebElement element;

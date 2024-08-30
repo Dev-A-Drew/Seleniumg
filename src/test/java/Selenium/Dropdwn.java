@@ -21,7 +21,7 @@ public class Dropdwn {
         //opening the web page
         driver.get("https://www.boa.bo/BoAWebsite");
 
-        //Maximize the winddow
+        //Maximize the window
         //driver.manage().window().maximize();
 
         //Instantiating an object from WebDriverWait to wait the page load
