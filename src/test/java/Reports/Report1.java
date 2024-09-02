@@ -252,7 +252,7 @@ public class Report1 {
                 .addScreenCaptureFromPath(pathCapture, "Google homepage screenshot with path 4");
 
 
-        
+
 
                                                 // Test 12  - screenshots at LOG LEVEL
 
@@ -299,7 +299,53 @@ public class Report1 {
 
 
 
+                                                 // Test 13  -
+        extentReportA
+                .createTest("Test Attribute 13", "Test Description 13")
+                .assignAuthor("Andrew Johnson")
+                .assignCategory("Smoke")
+                .assignDevice("Chrome 99 v")
+                .pass("This is a passed test");
 
+        extentReportA
+                .createTest("Test Attribute 14", "Test Description 14")
+                .assignAuthor("Sam Shawn")
+                .assignCategory("Sanity")
+                .assignDevice("Edge 99 v")
+                .fail("This is failed test");
+
+        extentReportA
+                .createTest("Test Attribute 15", "Test Description 15")
+                .assignDevice("FireFox 99 v")
+                .assignCategory("Smoke")
+                .fail("This is failed test");
+
+        extentReportA
+                .createTest("Test Attribute 16", "Test Description 16")
+                .assignAuthor("Sam Shawn")
+                .assignAuthor("Andrew Johnson")
+                .assignCategory("Sanity")
+                .assignCategory("Regression")
+                .assignDevice("FireFox 99 v")
+                .assignDevice("Chrome 99")
+                .pass("This is a passed test");
+
+        extentReportA
+                .createTest("Test Attribute 17", "Test Description 17")
+                .assignAuthor("Sam Shawn", "John Snow", "Andrew Johnson")
+                .assignCategory("Sanity", "Regression", "Smoke")
+                .assignDevice("FireFox 99 v", "Chrome 99", "Edge 99 v", "Brave 102")
+                .pass("This is a passed test");
+
+        String [] namesTesters = {"Sam Shawn","John Snow", "Andrew Johnson"};
+        String [] namesCategory = {"Sanity", "Regression", "Smoke"};
+        String [] namesBrowsers = {"FireFox 99 v", "Chrome 99", "Edge 99 v", "Brave 102"};
+        extentReportA
+                .createTest("Test Attribute 18", "Test Description 18")
+                .assignAuthor(namesTesters)
+                .assignCategory(namesCategory)
+                .assignDevice(namesBrowsers)
+                .pass("This is a passed test");
 
 
 
@@ -331,6 +377,8 @@ public class Report1 {
         System.out.println("Screenshot saved successfully");
         return base64Code;
     }
+
+
 
 
 }
