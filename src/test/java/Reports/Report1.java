@@ -7,27 +7,31 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.CodeLanguage;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.model.Media;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.*;
 
 public class Report1 {
     static WebDriver driverA;
+
     public static void main(String[] args) throws IOException {
         // Some kind like engine, which is the instantiation of the ExtendReports Class
         ExtentReports extentReportA = new ExtentReports();
+
 
         /*
                         OPTION 1 TO GENERATE REPORT: Path to generate the html report by String path
@@ -299,7 +303,11 @@ public class Report1 {
 
 
 
-                                                 // Test 13  -
+
+                                                 // Test 13  - Tags Category/Device/Author
+
+
+
         extentReportA
                 .createTest("Test Attribute 13", "Test Description 13")
                 .assignAuthor("Andrew Johnson")
@@ -346,6 +354,68 @@ public class Report1 {
                 .assignCategory(namesCategory)
                 .assignDevice(namesBrowsers)
                 .pass("This is a passed test");
+
+                                                // Test 14  - changing XML and JSON
+
+        /* THIS IS WITHOUT USING THE extent-report-config.json, TO ENABLE THIS PIECE OF CODE, DELETE THE MENTIONED FILE
+
+        sparkReporterB.config().setTheme(Theme.DARK);
+        sparkReporterB.config().setReportName("REPORT NAME TITLE");
+        sparkReporterB.config().setDocumentTitle("DOCUMENT NAME TITLE");
+        sparkReporterB.config().setTimeStampFormat("dd-MM-yyyy hh:mm:ss");
+        sparkReporterB.config().setCss(".badge-primary{background-color:#da0b2b}");
+        sparkReporterB.config().setJs("document.getElementsByClassName('logo')[0].style.display='none';");
+        */
+
+
+
+        /*
+
+                                                USING JSON FILE DOCUMENT
+
+
+        sparkReporterB.loadJSONConfig(new File("./src/test/resources/extent-report-config.json"));
+        extentReportA.attachReporter(sparkReporterB);
+        */
+
+
+        /*                                      USING XML FILE DOCUMENT
+        sparkReporterB.loadXMLConfig(new File("./src/test/resources/extent-report-config2.xml"));
+        extentReportA.attachReporter(sparkReporterB);
+        */
+
+
+
+
+                                        //Test 15  - Adding system/environment Information
+
+
+        /*          THIS PIECE OF CODE WILL DISPLAY VERSION AND NAME BROWSER
+        WebDriverManager.chromedriver().setup();
+        Capabilities capabilityC = ((RemoteWebDriver)driverA).getCapabilities();
+        System.out.println(capabilityC.getBrowserName()+"\n");
+        System.out.println(capabilityC.getBrowserVersion());
+        */
+
+
+            //All properties
+        //System.getProperties().list(System.out);
+
+            //Specific properties depending on the parameters of "getProperty" function
+        //System.out.println(System.getProperty("os.name"));
+        //System.out.println(System.getProperty("java.version"));
+
+
+        Capabilities capabilityC = ((RemoteWebDriver)driverA).getCapabilities();
+        extentReportA.setSystemInfo("OS", System.getProperty("os.name"));
+        extentReportA.setSystemInfo("Java Version", System.getProperty("java.version"));
+        extentReportA.setSystemInfo("Browser", capabilityC.getBrowserName()+" "+capabilityC.getBrowserVersion());
+        extentReportA.setSystemInfo("User Name", "the name of the user xD" );
+        extentReportA.setSystemInfo("APP URL", "www.linkofthewebsite.com");
+        extentReportA.setSystemInfo("Password", "12345");
+
+
+
 
 
 
