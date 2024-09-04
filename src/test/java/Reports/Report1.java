@@ -8,6 +8,7 @@ import com.aventstack.extentreports.markuputils.CodeLanguage;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Capabilities;
@@ -17,13 +18,30 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.List;
 import java.util.*;
+
+
+/*
+                                    SHORTCUTS ON EXTENT REPORT PAGE
+
+                 p - Show passed test                           l - switch theme
+                 f - show failed test                           t - test
+                 s - show Skipped test                          c - tag
+                 w - show warning test                          d - dashboard
+                 esc - clear filters                            x - exceptions/bug
+                 down-arrow - scroll down
+                 up-arrow - scroll up
+
+
+*/
+
+
+
 
 public class Report1 {
     static WebDriver driverA;
@@ -86,6 +104,10 @@ public class Report1 {
         ExtentTest testD3 = extentReportA.createTest("TestCase - 3")
                             .skip("This is a manipulated skipped test");
 
+        ExtentTest testD31 = extentReportA.createTest("TestCase - 3.1")
+                .warning("This is a manipulated warning test 3.1");
+
+
 
 
 
@@ -105,6 +127,7 @@ public class Report1 {
         extentReportA.createTest("TestCase - XML")
                      .log(Status.INFO,xmlData)
                      .info(MarkupHelper.createCodeBlock(xmlData, CodeLanguage.XML));
+
 
 
 
@@ -131,6 +154,7 @@ public class Report1 {
 
 
 
+
                                                 //Test - 6 -> List Scenario
 
 
@@ -143,6 +167,7 @@ public class Report1 {
         extentReportA.createTest("TestCase -Oordered/Unordered List")
                      .info(MarkupHelper.createOrderedList(listData))
                      .info(MarkupHelper.createUnorderedList(listData));
+
 
 
 
@@ -174,6 +199,7 @@ public class Report1 {
 
 
 
+
                                                 //Test - 9 -> highlighted text
 
 
@@ -182,6 +208,7 @@ public class Report1 {
         extentReportA.createTest("Highlight log test")
                      .info(MarkupHelper.createLabel("This is a highlighted message", ExtentColor.BLUE))
                      .info("This is not a highlighted message");
+
 
 
 
@@ -200,6 +227,7 @@ public class Report1 {
         Throwable t = new RuntimeException("This is a custom exception");
         extentReportA.createTest("Custom Test Exception")
                      .fail(t);
+
 
 
 
@@ -258,7 +286,11 @@ public class Report1 {
 
 
 
+
+
                                                 // Test 12  - screenshots at LOG LEVEL
+
+
 
 
 
@@ -304,7 +336,9 @@ public class Report1 {
 
 
 
+
                                                  // Test 13  - Tags Category/Device/Author
+
 
 
 
@@ -355,7 +389,11 @@ public class Report1 {
                 .assignDevice(namesBrowsers)
                 .pass("This is a passed test");
 
+
+
                                                 // Test 14  - changing XML and JSON
+
+
 
         /* THIS IS WITHOUT USING THE extent-report-config.json, TO ENABLE THIS PIECE OF CODE, DELETE THE MENTIONED FILE
 
@@ -390,6 +428,7 @@ public class Report1 {
                                         //Test 15  - Adding system/environment Information
 
 
+
         /*          THIS PIECE OF CODE WILL DISPLAY VERSION AND NAME BROWSER
         WebDriverManager.chromedriver().setup();
         Capabilities capabilityC = ((RemoteWebDriver)driverA).getCapabilities();
@@ -417,6 +456,36 @@ public class Report1 {
 
 
 
+                                          //Test 16 - changing the order of the left side icons
+
+
+
+        /*
+        sparkReporterB.viewConfigurer().viewOrder().as(new ViewName[]{
+                ViewName.DASHBOARD,
+                ViewName.TEST,
+                ViewName.EXCEPTION,
+                ViewName.CATEGORY,
+                ViewName.DEVICE
+        }).apply();
+        */
+
+
+
+                                            //Test 17 - Generate multiple reports
+
+
+
+        ExtentSparkReporter sparkrReporter_All = new ExtentSparkReporter("E:\\Java IntelliJ\\Seleniumg\\src\\AllTest.html");
+        ExtentSparkReporter sparkrReporter_Skipped = new ExtentSparkReporter("E:\\Java IntelliJ\\Seleniumg\\src\\SkippedTest.html");
+        ExtentSparkReporter sparkrReporter_Failed = new ExtentSparkReporter("E:\\Java IntelliJ\\Seleniumg\\src\\FailedTest.html");
+        sparkrReporter_Failed.filter().statusFilter().as(new Status[]{
+                Status.FAIL,
+                Status.WARNING
+        }).apply();
+        extentReportA.attachReporter(sparkrReporter_All,sparkrReporter_Skipped,sparkrReporter_Failed);
+
+
 
 
 
@@ -424,8 +493,14 @@ public class Report1 {
 
         extentReportA.flush();
         driverA.quit();
-        Desktop.getDesktop().browse(new File("E:\\Java IntelliJ\\Seleniumg\\src\\ReportNameOfTestOrSuit.html").toURI());
+        Desktop.getDesktop().browse(new File("E:\\Java IntelliJ\\Seleniumg\\src\\AllTest.html").toURI());
+        Desktop.getDesktop().browse(new File("E:\\Java IntelliJ\\Seleniumg\\src\\SkippedTest.html").toURI());
+        Desktop.getDesktop().browse(new File("E:\\Java IntelliJ\\Seleniumg\\src\\FailedTest.html").toURI());
     }
+
+
+
+
 
 
                                             // METHODS FOR TEST 11
